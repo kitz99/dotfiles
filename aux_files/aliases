@@ -1,0 +1,34 @@
+function list () {
+  echo "Aliases"
+  echo " _____________________________________________"
+  echo "| Name          |         Description        |"
+  echo "|---------------|----------------------------|"
+  echo "| rs            | rake routes with arguments |"
+  echo "|---------------|----------------------------|"
+  echo "| expose        | brodcast rails server      |"
+  echo "|---------------|----------------------------|"
+  echo "| cola          | git-cola in bg             |"
+  echo "|---------------|----------------------------|"
+  echo "| ips           | ips of network interfaces  |"
+  echo "|---------------|----------------------------|"
+  echo "| speedtest     | speed test                 |"
+  echo "|---------------|----------------------------|"
+  echo "| serve         | serve cwd in LAN           |"
+  echo "|---------------|----------------------------|"
+  echo "| webpack       | yarn webpack               |"
+  echo "|---------------|----------------------------|"
+}
+
+
+alias rs='rake routes | grep -i'
+alias expose="rails s -b `(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d'/')`"
+alias pbpaste='xclip -selection clipboard -o'
+alias cola='git cola &'
+
+# Get External IP / local IPs
+alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
+alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
+
+# Quickly serve the current directory as HTTP
+alias serve='ruby -run -e httpd . -p 8000'
+alias webpack='yarn webpack'

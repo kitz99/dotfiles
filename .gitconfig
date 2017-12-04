@@ -1,2 +1,7 @@
+[push]
+    default = current
+
 [alias]
-	co = checkout
+    co = checkout
+[pull]
+    default = current

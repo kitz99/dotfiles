@@ -1,0 +1,100 @@
+# python json pretty
+
+function help () {
+  echo "Functions table of content"
+  echo " ________________________________________________________________ "
+  echo "| Name          |         Description        |    How To Use     |"
+  echo "|---------------|----------------------------|-------------------|"
+  echo "| jpf           | json pretty print for file | jpf /path/to/file |"
+  echo "|---------------|----------------------------|-------------------|"
+  echo "| fpush         | push to specific feature   | fpush feat_name   |"
+  echo "|---------------|----------------------------|-------------------|"
+  echo "| fpull         | pull from specific feature | fpush feat_name   |"
+  echo "|---------------|----------------------------|-------------------|"
+  echo "| ngrok         | open ngrok tunnel          | ngrok port        |"
+  echo "|---------------|----------------------------|-------------------|"
+  echo "| vremea        | weather                    | vremea            |"
+  echo "|---------------|----------------------------|-------------------|"
+  echo "| pg-admin      | pg_admin 4 client          | pg-admin          |"
+  echo "|---------------|----------------------------|-------------------|"
+  echo "| kpmg-vpn      | open vpn tunnel to kpmg    | kpmg-vpn          |"
+  echo "|---------------|----------------------------|-------------------|"
+  echo "| clear-es      | clear all es indices       | clear-es          |"
+  echo "|---------------|----------------------------|-------------------|"
+  echo "| es            | start es server            | es                |"
+  echo "|---------------|----------------------------|-------------------|"
+  echo "| kibana        | start kibana server        | kibana            |"
+  echo "|---------------|----------------------------|-------------------|"
+  echo "| logstash      | start logstash server      | logstash          |"
+  echo "|---------------|----------------------------|-------------------|"
+  echo "| beat          | start filebeat server      | logstash          |"
+  echo "|---------------|----------------------------|-------------------|"
+  echo "| hotfix_start  | start logstash server      | logstash          |"
+  echo "|---------------|----------------------------|-------------------|"
+  echo "| hotfix_finish | start filebeat server      | logstash          |"
+  echo "|---------------|----------------------------|-------------------|"
+}
+
+function jpf () {
+  cat $1 | python -m json.tool
+}
+
+function fpush() {
+  CURRENT_FEAT=`(git symbolic-ref HEAD | cut -d'/' -f4)`
+  read -q "REPLY?Are you sure? ($CURRENT_FEAT)"
+  if [[ $REPLY =~ ^[Yy]$ ]]
+  then
+    echo "\n"
+    git push origin feature/$CURRENT_FEAT
+  else
+    echo "Push canceled. Checkout to the required feature branch and try again"
+  fi
+}
+
+function fpull() {
+  git pull origin feature/$1
+}
+
+function ngrok() {
+  $HOME/utils/ngrok http $1
+}
+
+function vremea() {
+  curl wttr.in/Bucharest
+}
+
+function pg-admin() {
+  cd ~/pgadmin4 && source bin/activate && python lib/python2.7/site-packages/pgadmin4/pgAdmin4.py
+}
+
+function kpmg-vpn() {
+  sudo openvpn --config /home/k3rn4l/.vpncert/bogdant@kpmg.aws.ovpn
+}
+
+function clear-es() {
+  curl -XDELETE 'http://localhost:9200/_all'
+}
+
+function es() {
+  cd $HOME/utils/elasticsearch-5.4.2 && bin/elasticsearch
+}
+
+function kibana() {
+  cd $HOME/utils/kibana-5.4.2-linux-x86_64 && bin/kibana
+}
+
+function logstash() {
+  cd $HOME/utils/logstash-5.4.2 && bin/logstash -f $1
+}
+
+function beat() {
+  cd $HOME/utils/filebeat-5.4.3-linux-x86_64 && ./filebeat
+}
+
+function hotfix_start() {
+  git flow hotfix start $1
+}
+
+function hothix_finish() {
+  git flow hotfix finish $1
+}

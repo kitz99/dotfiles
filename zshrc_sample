@@ -1,0 +1,17 @@
+export ZSH=$HOME/.oh-my-zsh
+
+#zsh theme
+ZSH_THEME="amuse"
+
+# User configuration
+
+source $ZSH/oh-my-zsh.sh
+source $HOME/dotfiles/data/utils
+source $HOME/dotfiles/data/aliases
+
+ # You may need to manually set your language environment
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+source $HOME/dotfiles/vars/environment_vars
+source $HOME/dotfiles/vars/.creds

@@ -1,5 +1,3 @@
-# python json pretty
-
 function help () {
   echo "Functions table of content"
   echo " ________________________________________________________________ "
@@ -16,8 +14,6 @@ function help () {
   echo "| vremea        | weather                    | vremea            |"
   echo "|---------------|----------------------------|-------------------|"
   echo "| pg-admin      | pg_admin 4 client          | pg-admin          |"
-  echo "|---------------|----------------------------|-------------------|"
-  echo "| kpmg-vpn      | open vpn tunnel to kpmg    | kpmg-vpn          |"
   echo "|---------------|----------------------------|-------------------|"
   echo "| clear-es      | clear all es indices       | clear-es          |"
   echo "|---------------|----------------------------|-------------------|"
@@ -67,9 +63,6 @@ function pg-admin() {
   cd ~/pgadmin4 && source bin/activate && python lib/python2.7/site-packages/pgadmin4/pgAdmin4.py
 }
 
-function kpmg-vpn() {
-  sudo openvpn --config /home/k3rn4l/.vpncert/bogdant@kpmg.aws.ovpn
-}
 
 function clear-es() {
   curl -XDELETE 'http://localhost:9200/_all'

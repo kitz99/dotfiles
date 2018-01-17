@@ -9,7 +9,7 @@ sudo apt-get install terminator
 wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
 
 mv $HOME/.zshrc $HOME/.zshrc.BKP
-ln $HOME/dotfiles/zshrc_sample $HOME/.zshrc
+cp $HOME/dotfiles/zshrc_sample $HOME/.zshrc
 
 unzip customvim.zip -d $HOME
 

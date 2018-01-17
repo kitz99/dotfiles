@@ -1,0 +1,27 @@
+[global_config]
+  enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  title_font = Courier 10 Pitch Bold 15
+  title_inactive_bg_color = "#000000"
+  title_receive_bg_color = "#000000"
+  title_receive_fg_color = "#000000"
+  title_transmit_bg_color = "#000000"
+  title_transmit_fg_color = "#0d0606"
+  title_use_system_font = False
+[keybindings]
+  split_horiz = <Primary><Shift>z
+  split_vert = <Primary><Alt>z
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_image = None
+    foreground_color = "#ffffff"
+    palette = "#2e3436:#cc0000:#4e9a06:#c4a000:#3465a4:#d879e8:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#e4b7df:#34e2e2:#eeeeec"
+    scrollback_infinite = True

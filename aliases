@@ -1,0 +1,6 @@
+alias zconf='vim $HOME/.zshrc'
+alias aconf='vim $HOME/.dotfiles/aliases'
+alias uconf='vim $HOME/.dotfiles/utils'
+alias zsource='source $HOME/.zshrc'
+alias c='clear'
+

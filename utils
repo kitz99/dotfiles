@@ -1,0 +1,64 @@
+function help () {
+  echo "Functions table of content"
+  echo " ________________________________________________________________ "
+  echo "| Name          |         Description        |    How To Use     |"
+  echo "|---------------|----------------------------|-------------------|"
+  echo "| jpf           | json pretty print for file | jpf /path/to/file |"
+  echo "|---------------|----------------------------|-------------------|"
+  echo "| fpush         | push to specific feature   | fpush feat_name   |"
+  echo "|---------------|----------------------------|-------------------|"
+  echo "| fpull         | pull from specific feature | fpush feat_name   |"
+  echo "|---------------|----------------------------|-------------------|"
+  echo "| ngrok         | open ngrok tunnel          | ngrok port        |"
+  echo "|---------------|----------------------------|-------------------|"
+  echo "| vremea        | weather                    | vremea            |"
+  echo "|---------------|----------------------------|-------------------|"
+  echo "| hotfix_start  | start logstash server      | logstash          |"
+  echo "|---------------|----------------------------|-------------------|"
+  echo "| hotfix_finish | start filebeat server      | logstash          |"
+  echo "|---------------|----------------------------|-------------------|"
+  echo "| cassandra     | start cassandra cluster in a docker container  |"
+  echo "|---------------|----------------------------|-------------------|"
+  echo "| cqlsh         | start cassandra cli client | cqlsh <cqlversion>|"
+  echo "|---------------|----------------------------|-------------------|"
+}
+
+function jpf () {
+  cat $1 | python -m json.tool
+}
+
+function fpush() {
+  CURRENT_FEAT=`(git symbolic-ref HEAD | cut -d'/' -f4)`
+  read -q "REPLY?Are you sure? ($CURRENT_FEAT)"
+  if [[ $REPLY =~ ^[Yy]$ ]]
+  then
+    echo "\n"
+    git push origin feature/$CURRENT_FEAT
+  else
+    echo "Push canceled. Checkout to the required feature branch and try again"
+  fi
+}
+
+function fpull() {
+  git pull origin feature/$1
+}
+
+function vremea() {
+  curl wttr.in/Bucharest
+}
+
+function hotfix_start() {
+  git flow hotfix start $1
+}
+
+function hothix_finish() {
+  git flow hotfix finish $1
+}
+
+function cassandra() {
+  docker run -p '9042:9042' -v $HOME/Desktop/learn/data_dirs/cassandra:/var/lib/cassandra cassandra
+}
+
+function cqlsh() {
+  $HOME/Library/Python/2.7/bin/cqlsh --cqlversion="${1:-3.4.4}"
+}

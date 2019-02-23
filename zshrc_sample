@@ -1,7 +1,15 @@
 export ZSH=$HOME/.oh-my-zsh
 
 #zsh theme
-ZSH_THEME="amuse"
+ZSH_THEME="powerlevel9k/powerlevel9k"
+
+plugins=(
+  git
+  vi-mode
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  zsh-completions
+)
 
 # User configuration
 
@@ -14,4 +22,6 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 source $HOME/dotfiles/vars/environment_vars
-source $HOME/dotfiles/vars/.creds
+source $HOME/.dotfiles/vars/powerlevel9k_params
+
+autoload -U compinit && compinit
